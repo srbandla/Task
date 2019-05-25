@@ -1,64 +1,66 @@
 import React, { Component } from 'react';
 import './App.css';
-import { connect } from 'react-redux';
-//import Component1 from './Component1';
+import Data from './Data.js';
+import autoBind from 'react-autobind';
+import axios from 'axios';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>TELE - DNA PROJECT</h1>
-        <div className="main">
-          <div className="left">
-            <h2> Customer Name</h2>
-            {this.props.details.map(el => (
-              <h3 key={el.id}>
-                <button onClick={() => this.props.selectCustomer(el.id)}>{el.name}</button>
-              </h3>
-            ))}
-          </div>
-
-          <div className="right">
-            <h2> Customer Details </h2>
-            {this.props.history.map(el => (
-              <table key={el.id}>
-                <tr>
-                  <td> Name</td> <td> : &nbsp;&nbsp;&nbsp;{el.name} </td>
-                </tr>
-                <tr>
-                  <td> Address </td> <td>:&nbsp;&nbsp;&nbsp;{el.addr} </td>
-                </tr>
-                <tr>
-                  <td> Phone No</td> <td>:&nbsp;&nbsp;&nbsp;{el.phno} </td>
-                </tr>
-                <tr>
-                  <td> ID </td> <td>:&nbsp;&nbsp;&nbsp;{el.id} </td>
-                </tr>
-              </table>
-            ))}
-          </div>
-        </div>
-
-        {/*<Component1 toCmp1 = {this.props.details} />*/}
-      </div>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: ''
+    };
+    autoBind(this);
+    this.inIt();
   }
+
+  // componentDidMount() {
+  //   axios.get('https://reqres.in/api/users/1').then(res => console.log('Bandla.....', res.data));
+  // }
 }
+// var Data = new (function() {
+//     this.data = function() {
+//       axios.get('https://reqres.in/api/users/1').then(res => console.log('Bandla.....', res.data));
+//     };
 
-const mapStateToProps = state => {
-  return {
-    details: state.details,
-    history: state.history
-  };
-};
+// inIt() {
+//   var totalData = Data.data();
+//   console.log('arif..........totalData', totalData);
+/*  setTimeout(function() {
+      this.setState({
+        data: totalData
+      });
+    }, 3000); */
 
-const mapDispatchToProps = dispatch => {
-  return {
-    selectCustomer: id => dispatch({ type: 'SELECT', key: id })
-  };
-};
+//console.log('arif..........state', this.state);
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+render();
+{
+  return (
+    <div className="App">
+      <div>
+        <select>
+          <option value=""> select</option>
+          <option value="HR"> HR</option>
+          <option value="DEPARTMENT">DEPARTMENT</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <select>
+          <option value=""> select</option>
+          <option value="Employees"> Employee 1</option>
+          <option value="Employees"> Employee 2</option>
+          <option value="Employees"> Employee 3</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">Get Details</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">Clear</button>
+        <div />
+        <br />
+        <div>
+          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg" width="500px" />
+        </div>
+      </div>
+    </div>
+  );
+}
+export default App;
