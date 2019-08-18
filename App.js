@@ -34,6 +34,8 @@ class App extends Component {
 
 //console.log('arif..........state', this.state);
 
+// testing***********
+
 render();
 {
   return (
